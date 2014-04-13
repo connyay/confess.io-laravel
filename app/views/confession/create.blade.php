@@ -11,7 +11,7 @@ $placeHolderArr = ["What is on your mind?", "Something you want to get off your 
 $placeHolder = $placeHolderArr[array_rand($placeHolderArr)];
 ?>
 @section('content')
-  <div class="col-lg-8">
+  <div class="col-lg-8 col-lg-offset-2">
   <h4 class="contact--title">Rules:</h4>
     <ul>
       <li>
