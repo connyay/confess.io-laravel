@@ -100,7 +100,7 @@ class ConfessionController extends BaseController {
     public function getView($link)
     {
         // Get this confession data
-        $confession = $this->confession->where('link', '=', $link)->first();
+        $confession = $this->confessions->byHash($link);
 
         // Check if the confession exists
         if (is_null($confession))

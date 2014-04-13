@@ -1,4 +1,4 @@
-@extends('site.layouts.default')
+@extends('layouts.master')
 {{-- Web site Title --}}
 @section('title')
 @parent
@@ -7,13 +7,9 @@
 
 {{-- Content --}}
 @section('content')
-<div class="posts">
-    <h1 class="content-subhead">Confession</h1>
-	
+	<div class="col-lg-8 col-lg-offset-2 blog">
 		@include('confession._view')
-
-
-</div>
+		
 		<!-- the comment box -->
 
 			<p>Leave a Comment:</p>
@@ -32,8 +28,8 @@
 
 
 {{ $confession->twitterCard() }}
-
+</div>
 @section('scripts')
-<script src="{{{ asset('assets/js/vote.js') }}}"></script>
+{{ HTML::script('js/vote.js') }}
 @stop
 @stop

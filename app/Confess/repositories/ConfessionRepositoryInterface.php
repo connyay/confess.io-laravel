@@ -25,7 +25,15 @@ interface ConfessionRepositoryInterface
      * @param  int $id
      * @return Confession
      */
-    public function find( $id );
+    public function byId( $id );
+
+    /**
+     * Get a Confession by its hash.
+     *
+     * @param  string $hash
+     * @return Confession
+     */
+    public function byHash( $hash );
 
     /**
      * Create a new Confession.

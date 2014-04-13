@@ -11,7 +11,6 @@
 	
 	@foreach ($confessions as $confession)
 	@include('confession._view')
-	<hr>
 	@endforeach
 	<div class="text-center">
 		{{ $confessions->links() }}

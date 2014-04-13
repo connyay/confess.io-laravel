@@ -16,3 +16,4 @@
 	<button data-v="-1" data-id="789" type="button" class="btn btn-danger btn-shrug">{{ $confession->shrugs()->count() }} {{ Str::plural('Shrug', $confession->shrugs()->count()) }}</button>
 </div>
 </div>
+<hr>

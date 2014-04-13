@@ -12,7 +12,7 @@ class DbConfessionRepository implements ConfessionRepositoryInterface
      */
     public function all()
     {
-        return Gif::orderBy( 'id', 'DESC' )->get();
+        return Confession::orderBy( 'id', 'DESC' )->get();
     }
 
     /**
@@ -28,15 +28,26 @@ class DbConfessionRepository implements ConfessionRepositoryInterface
     }
 
     /**
+     * Get a Confession by its hash.
+     *
+     * @param  string $hash
+     * @return Confession
+     */
+    public function byHash($hash)
+    {
+        return $this->byId(\PseudoCrypt\PseudoCrypt::unhash($hash));
+    }
+    
+    /**
      * Get a Confession by its id.
      *
      * @param  int $id
      * @return Confession
      */
-    public function find($id)
+    public function byId($id)
     {
-        return Confession::rememberForever( 'gif-'.$id )->find( $id );
-    }
+        return Confession::rememberForever( 'confession-'.$id )->findOrFail( $id );
+    }    
 
     /**
      * Create a new Confession.
