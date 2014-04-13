@@ -109,8 +109,6 @@ return array(
 		'Illuminate\View\ViewServiceProvider',
 		'Illuminate\Workbench\WorkbenchServiceProvider',
 
-		'Mitch\Hashids\HashidsServiceProvider',
-
 	),
 
 	/*
@@ -176,8 +174,6 @@ return array(
 		'URL'             => 'Illuminate\Support\Facades\URL',
 		'Validator'       => 'Illuminate\Support\Facades\Validator',
 		'View'            => 'Illuminate\Support\Facades\View',
-
-		'Hashids'         => 'Mitch\Hashids\Hashids',
 
 	),
 
