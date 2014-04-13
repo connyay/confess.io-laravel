@@ -57,7 +57,7 @@
               <section class="footer">
                 <div class="container">
                   <div class="row">
-                    <ul class="list-unstyled  col-12  col-sm-5  col-lg-4">
+                    <ul class="list-unstyled list-inline col-12  col-sm-5  col-lg-4">
                     <li><a href="{{ URL::to('about') }}">About</a></li>
                     <li><a href="{{ URL::to('blog') }}">Blog</a></li>
                     <li><a href="{{ URL::to('contact') }}">Contact</a></li>
