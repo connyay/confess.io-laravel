@@ -10,6 +10,8 @@
 | and give it the Closure to execute when that URI is requested.
 |
 */
+
+
 Route::get( 'about', function() {
 		// Return about us page
 		return View::make( 'site/about' );

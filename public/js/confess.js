@@ -1,15 +1,16 @@
 jQuery(function($) {
-$("#confessionBox").focus();
+var confessBox = $("#confessionBox");
+confessBox.focus();
 var showDialog = function (e) {
     e.preventDefault();
     $("#createModal").modal("show");
     $("#confirm").focus()
 };
-$("#confessionBox").keyup(function (e) {
-    if ($("#confessionBox").val() == "") {
-        $("#submitBtn").attr("disabled", "disabled")
+confessBox.on('input', function (e) {
+    if (confessBox.val()) {
+        $("#submitBtn").removeAttr("disabled");
     } else {
-        $("#submitBtn").removeAttr("disabled")
+        $("#submitBtn").attr("disabled", "disabled");
     }
 });
 $("#confirm").click(function (e) {

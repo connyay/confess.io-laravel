@@ -9,7 +9,7 @@ jQuery(function ($) {
     var doVote = function (e, id, vote, target) {
         $.ajax({
             type: "POST",
-            url: "http://localhost/lv_base/public/ns/vote",
+            url: "/ns/vote",
             data: {
                 id: id,
                 vote: vote,
@@ -44,7 +44,7 @@ jQuery(function ($) {
             }
         })
     };
-    $(".hug-tab, .shrug-tab").click(function (ev) {
+    $(".btn-hug, .btn-shrug").click(function (ev) {
         ev.preventDefault();
         ev.stopPropagation();
         $this = $(this);

@@ -1,58 +1,81 @@
 <!DOCTYPE html>
-<html lang="en">
+  <html>
     <head>
-        <meta charset="utf-8" />
-        <title>@section('title')
-        Confess.io
-        @show
-        &raquo; Anonymous Confessions</title>
-        <meta name="description" content="Read anonymous confessions posted by users just like you. Have something to confess? Feel free to post your anonymous confession here!" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <script>window._token = "{{{ Session::getToken() }}}";</script>
-        {{ HTML::style('css/pure/pure.0.4.2.css') }}
-        {{ HTML::style('css/main-grid.css') }}
-        {{ HTML::style('css/layouts/main.css') }}
-        <link rel="shortcut icon" href="{{{ asset('assets/ico/favicon.png') }}}"></head>
-        <body>
-            <div class="pure-g-r" id="layout">
-                <div class="sidebar pure-u">
-                    <header class="header">
-                        <hgroup>
-                        <h1 class="brand-title">Confess.io</h1>
-                        <h2 class="brand-tagline">Anonymous Confessions</h2>
-                        </hgroup>
-                        <nav class="nav">
-                            <ul class="nav-list">
-                                <li class="nav-item">
-                                    <a class="pure-button" href="{{ URL::to('ns') }}">Read</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="pure-button" href="{{ URL::to('n/new') }}">Write</a>
-                                </li>
-                            </ul>
-                        </nav>
-                    </header>
-                </div>
-                <div class="pure-u-1">
-                    <div class="content">
-                        <!-- content -->
-                        @yield('content')
-                        <!-- ./ content -->
-                        <footer class="footer">
-                            <div class="pure-menu pure-menu-horizontal pure-menu-open">
-                                <ul>
-                                    <li><a href="{{ URL::to('about') }}">About</a></li>
-                                    <li><a href="{{ URL::to('blog') }}">Blog</a></li>
-                                    <li><a href="{{ URL::to('contact') }}">Contact</a></li>
-                                    <li><a href="http://github.com/connyay/confess">Github</a></li>
-                                    <li><a href="http://twitter.com/confess_io">Twitter</a></li>
-                                </ul>
-                            </div>
-                        </footer>
-                    </div>
-                </div>
+    <title>@section('title')
+    Confess.io
+    @show
+    &raquo; Anonymous Confessions</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="description" content="Read anonymous confessions posted by users just like you. Have something to confess? Feel free to post your anonymous confession here!" />
+    <meta name="robots" content="INDEX,FOLLOW">
+    <meta name="csrf-token" content="<?= csrf_token() ?>">
+    {{ HTML::style('css/bootstrap.css') }}
+    {{ HTML::style('css/styles.css') }}
+    {{ HTML::style('css/media-queries.css') }}
+    {{ HTML::script('js/modernizr.custom.js') }}
+  </head>
+    <body>
+    <!-- nav -->
+      <nav class="navbar  navbar-fixed-top" role="navigation">
+      <!-- container -->
+        <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="{{ URL::to('ns') }}">Confess.io</a>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+          <div class="collapse  navbar-collapse  navbar-ex1-collapse">
+            <ul class="nav  navbar-nav">
+            @if(Request::is('ns'))
+            <li class="active">Read</li>
+            @else
+            <li><a href="{{ URL::to('ns') }}">Read</a></li>
+            @endif
+            @if(Request::is('n/new'))
+            <li class="active">Write</li>
+            @else
+            <li><a href="{{ URL::to('n/new') }}">Write</a></li>
+            @endif
+          </ul>
+          </div><!-- /navbar-collapse -->
+          </div><!-- /container -->
+          </nav><!-- /nav -->
+          <!-- main-content -->
+            <div class="container  main-content">
+              <div class="row">
+              @yield('content')
             </div>
-            @section('scripts') 
-            @show
-        </body>
-    </html>
+            </div><!-- /main-content -->
+            <!-- footer -->
+              <section class="footer">
+                <div class="container">
+                  <div class="row">
+                    <ul class="list-unstyled  col-12  col-sm-5  col-lg-4">
+                    <li><a href="{{ URL::to('about') }}">About</a></li>
+                    <li><a href="{{ URL::to('blog') }}">Blog</a></li>
+                    <li><a href="{{ URL::to('contact') }}">Contact</a></li>
+                    <li><a href="http://github.com/connyay/confess">Github</a></li>
+                    <li><a href="http://twitter.com/confess_io">Twitter</a></li>
+                  </ul>
+                    <div class="col-12  col-sm-7  col-lg-5  col-lg-offset-3  text-right  hard--right">
+                    <h3 class="footer--main-logo">Confess.io</h3>
+                    <p>
+                    Built with love by <a href="http://twitter.com/_connyay" target="_blank" class="underline">@_connyay</a> &#169; {{ date('Y') }}
+                    </p>
+                  </div>
+                </div>
+              </div>
+              </section><!-- footer -->
+              <!-- jQuery -->
+              <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+              {{ HTML::script('js/bootstrap.min.js') }}
+              @yield('scripts')
+            </body>
+          </html>

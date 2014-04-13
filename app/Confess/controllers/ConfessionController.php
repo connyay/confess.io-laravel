@@ -12,9 +12,6 @@ class ConfessionController extends BaseController {
      */
     protected $confessions;
 
-    protected $placeHolderArr = ["What is on your mind?", "Something you want to get off your chest?", 
-    "Something bothering you?", "Lay it on us.", "Want to talk about it?"];
-
     /**
      * Create a new Confession controller.
      *
@@ -46,8 +43,7 @@ class ConfessionController extends BaseController {
      */
     public function create()
     {
-        $placeHolder = $this->placeHolderArr[array_rand($this->placeHolderArr)];
-        return View::make('confession/create', compact('placeHolder'));
+        return View::make('confession/create');
     }
 
     /**

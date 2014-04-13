@@ -1,33 +1,18 @@
-<section class="post">
-    <header class="post-header">
-
-        <h2 class="post-title"><a href="{{{ $confession->url() }}}">{{ $confession->link }}</a></h2>
-
-        <p class="post-meta">
-        	
-            {{{ $confession->date }}} &mdash; <a href="{{{ $confession->
-				url() }}}">{{$confession->comments()->count()}} {{ Str::plural('Comment', $confession->comments()->count()) }}
-			</a>
-			
-        </p>
-    </header>
-
-    <div class="post-body">
-        <p>
-          {{ Str::words($confession->content()) }}
-		@if(str_word_count($confession->confession) > 100)
-		<p>
-			<a href="{{{ $confession->url() }}}">Continue Reading &raquo;</a>
-		</p>
-		@endif
-        </p>
-    </div>
-
-
-    <button data-v="1" data-id="{{ $confession->
-				id }}" type="button" class="pure-button pure-button-hug">{{ $confession->hugs()->count() }} {{ Str::plural('Hug', $confession->hugs()->count()) }}
-			</button>
-			<button data-v="-1" data-id="{{ $confession->
-				id }}" type="button" class="pure-button pure-button-shrug">{{ $confession->shrugs()->count() }} {{ Str::plural('Shrug', $confession->shrugs()->count()) }}
-			</button>
-</section>
+<h4 class="blog-post-title"><a href="{{{ $confession->url() }}}">{{ $confession->link }}</a></h4>
+	<ul class="list-unstyled  tags  blog-tags">
+	<li><p>{{{ $confession->date }}}</p></li>
+		<li><a href="{{{ $confession->
+	url() }}}">{{$confession->comments()->count()}} {{ Str::plural('Comment', $confession->comments()->count()) }}</a></li>
+</ul>
+<p>
+{{ Str::words($confession->content()) }}
+</p>
+<div class="text-right">
+	<div class="btn-group btn-group-sm" data-toggle="buttons-radio">
+	<button data-v="1" data-id="{{ $confession->id }}" type="button" class="btn-group btn btn-primary btn-hug"> {{ $confession->hugs()->count() }} {{ Str::plural('Hug', $confession->hugs()->count()) }}</button>
+	@if(str_word_count($confession->confession) > 100)
+	<a href="{{{ $confession->url() }}}" class="btn btn--green">Read More</a>
+	@endif
+	<button data-v="-1" data-id="789" type="button" class="btn btn-danger btn-shrug">{{ $confession->shrugs()->count() }} {{ Str::plural('Shrug', $confession->shrugs()->count()) }}</button>
+</div>
+</div>
