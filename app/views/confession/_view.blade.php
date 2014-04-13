@@ -1,6 +1,6 @@
 <h4 class="blog-post-title"><a href="{{{ $confession->url() }}}">{{ $confession->link }}</a></h4>
 	<ul class="list-unstyled  tags  blog-tags">
-	<li><p>{{{ $confession->date }}}</p></li>
+	<li><p title="{{ $confession->created_at }}">{{ $confession->date() }}</p></li>
 		<li><a href="{{{ $confession->
 	url() }}}">{{$confession->comments()->count()}} {{ Str::plural('Comment', $confession->comments()->count()) }}</a></li>
 </ul>

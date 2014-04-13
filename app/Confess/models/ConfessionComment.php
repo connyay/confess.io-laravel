@@ -19,7 +19,7 @@ class ConfessionComment extends BaseModel {
 	 */
 	public function confession()
 	{
-		return $this->belongsTo('Confession');
+		return $this->belongsTo('\Confess\Models\Confession');
 	}
 
     /**

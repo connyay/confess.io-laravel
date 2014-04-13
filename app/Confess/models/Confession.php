@@ -1,7 +1,6 @@
 <?php namespace Confess\Models;
 
 use URL;
-use dflydev\markdown\MarkdownParser;
 
 class Confession extends BaseModel {
     protected $guarded = array();
@@ -72,15 +71,11 @@ class Confession extends BaseModel {
     /**
      * Get the date the confession was created.
      *
-     * @param \Carbon|null $date
      * @return string
      */
-    public function date($date=null)
+    public function date()
     {
-        if(is_null($date)) {
-            $date = $this->created_at;
-        }
-        return String::date($date);
+        return \Carbon\Carbon::createFromTimeStamp(strtotime($this->created_at))->diffForHumans();
     }
 
     /**

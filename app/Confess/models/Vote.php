@@ -14,6 +14,6 @@ class Vote extends BaseModel {
      */
     public function confession()
     {
-        return $this->belongsTo('Confession', 'confession_id');
+        return $this->belongsTo('\Confess\Models\Confession', 'confession_id');
     }
 }
