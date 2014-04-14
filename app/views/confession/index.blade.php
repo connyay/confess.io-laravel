@@ -10,7 +10,7 @@
 	<h6 class="blog-post-sub-title text-right">Displaying {{ $confessions->getFrom() }} - {{ $confessions->getTo() }} of {{ $confessions->getTotal() }} Confessions</h6>
 	
 	@foreach ($confessions as $confession)
-	@include('confession._view')
+	@include('confession._view', array('single'=>false))
 	@endforeach
 	<div class="text-center">
 		{{ $confessions->links() }}

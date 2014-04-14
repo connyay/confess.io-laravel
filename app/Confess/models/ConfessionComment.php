@@ -28,13 +28,9 @@ class ConfessionComment extends BaseModel {
      * @param \Carbon|null $date
      * @return string
      */
-    public function date($date=null)
+    public function date()
     {
-        if(is_null($date)) {
-            $date = $this->created_at;
-        }
-
-        return String::date($date);
+        return \Carbon\Carbon::createFromTimeStamp(strtotime($this->created_at))->diffForHumans();
     }
 
     /**

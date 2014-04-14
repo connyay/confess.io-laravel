@@ -18,12 +18,15 @@ Route::get( 'about', function() {
 	} );
 
 Route::group( array( 'namespace' => 'Confess\Controllers' ), function () {
-		Route::get( 'ns', 'ConfessionController@getIndex' );
-		Route::post( 'ns/vote', 'ConfessionController@postVote' );
+		Route::get( 'ns', 'ConfessionController@index' );
+
 		Route::get( 'n/new', 'ConfessionController@create' );
 		Route::post( 'n/new', 'ConfessionController@store' );
-		Route::get( 'n/{link}', 'ConfessionController@getView' );
-		Route::post( 'n/{link}', 'ConfessionController@postView' );
+
+		Route::get( 'n/{link}', 'ConfessionController@view' );
+
+		Route::post( 'n/{link}/vote', 'ConfessionVoteController@vote' );
+		Route::post( 'n/{link}/comment', 'ConfessionCommentController@comment' );
 
 		// Posts - Index
 		Route::get( 'blog', 'BlogController@getIndex' );
@@ -31,5 +34,5 @@ Route::group( array( 'namespace' => 'Confess\Controllers' ), function () {
 		Route::post( 'blog/{postSlug}', 'BlogController@postView' );
 
 		// Index Page - Last route, no matches
-		Route::get( '/', 'ConfessionController@getIndex' );
+		Route::get( '/', 'ConfessionController@index' );
 	} );

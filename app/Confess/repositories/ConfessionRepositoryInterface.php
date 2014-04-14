@@ -12,7 +12,7 @@ interface ConfessionRepositoryInterface
     /**
      * Paginate the confessions.
      *
-     * @param int $per_page
+     * @param int     $per_page
      *
      * @return array
      */
@@ -22,7 +22,7 @@ interface ConfessionRepositoryInterface
     /**
      * Get a Confession by its id.
      *
-     * @param  int $id
+     * @param int     $id
      * @return Confession
      */
     public function byId( $id );
@@ -30,10 +30,12 @@ interface ConfessionRepositoryInterface
     /**
      * Get a Confession by its hash.
      *
-     * @param  string $hash
+     * @param string  $hash
      * @return Confession
      */
     public function byHash( $hash );
+
+    public function addComment( $hash, $content );
 
     /**
      * Create a new Confession.

@@ -5,9 +5,9 @@
 &raquo; Write
 @stop
 {{-- Content --}}
-<?  
-$placeHolderArr = ["What is on your mind?", "Something you want to get off your chest?", 
-    "Something bothering you?", "Lay it on us.", "Want to talk about it?"];
+<?
+$placeHolderArr = ["What is on your mind?", "Something you want to get off your chest?",
+"Something bothering you?", "Lay it on us.", "Want to talk about it?"];
 $placeHolder = $placeHolderArr[array_rand($placeHolderArr)];
 ?>
 @section('content')
@@ -26,21 +26,19 @@ $placeHolder = $placeHolderArr[array_rand($placeHolderArr)];
       Please be patient while waiting for your post to show (posts are moderated to prevent spam).
     </li>
   </ul>
-    <form class="form-horizontal" id="confessions-form" action="{{{ URL::to('n/new') }}}" method="post">
-    <input type="hidden" name="_token" value="{{{ Session::getToken() }}}" />
-      <div class="form-group">
-        <div class="col-12">
-        <textarea id="confessionBox" autofocus placeholder="{{$placeHolder}}" class="form-control" rows="5" name="message" id="message"></textarea>
-      </div>
+
+  {{ Form::open(array('url' => 'n/new', 'class' => 'form-horizontal', 'id'=>'confessions-form')) }}
+    <div class="form-group">
+      <div class="col-12">
+      {{ Form::textarea('confession', null, array('id'=>'confessionBox', 'class' => 'form-control', 'placeholder' => $placeHolder, 'rows'=>
+      '5')) }}
     </div>
-    
-    <button class="btn btn--green btn-xs" data-toggle="modal" data-target="#formatModal">Formatting Tips</button>
-      <div class="form-group">
-        <div class="col-12">
-        <button type="submit" id="submitBtn" disabled class="btn btn--green">Confess</button>
-      </div>
-    </div>
-  </form>
+  </div>
+    <div class="text-right">
+    <button class="btn btn--green btn-xs" data-toggle="modal" data-target="#formatModal">Formatting</button>
+  </div>
+  {{ Form::submit('Confess', array('id'=>'submitBtn', 'class' => 'btn btn-lg btn--green', 'disabled' => '')) }}
+  {{ Form::close() }}
   
   
 </div>
