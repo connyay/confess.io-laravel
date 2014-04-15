@@ -6,23 +6,19 @@ jQuery(function ($) {
     var doVote = function (e, hash, vote, target) {
         $.ajax({
             type: "POST",
+            dataType: "json",
             url: "/n/" + hash + "/vote",
             data: {
                 vote: vote,
                 _token: _token
             },
-            success: function (response) {
-                var data = JSON.parse(response);
-                if (data.result === "new") {
+            success: function (data, textStatus, xhr) {
+                if (xhr.status === 201) {
                     var count = parseInt(target.innerHTML, 10);
                     count += 1;
-                    if (vote === 1) {
-                        target.innerHTML = puralize(count, "Hug")
-                    } else {
-                        target.innerHTML = puralize(count, "Shrug")
-                    }
+                    target.innerHTML = puralize(count, data.vote)
                 }
-                if (data.result === "changed") {
+                else if(xhr.status === 200) {
                     var other = $(target).siblings()[0];
                     var count = parseInt(target.innerHTML, 10);
                     var otherCount = parseInt(other.innerHTML, 10);
@@ -30,10 +26,10 @@ jQuery(function ($) {
                     otherCount -= 1;
                     otherCount = Math.min(0, Math.abs(otherCount));
                     if (vote === 1) {
-                        target.innerHTML = puralize(count, "Hug");
+                        target.innerHTML = puralize(count, data.vote);
                         other.innerHTML = puralize(otherCount, "Shrug")
                     } else {
-                        target.innerHTML = puralize(count, "Shrug");
+                        target.innerHTML = puralize(count, data.vote);
                         other.innerHTML = puralize(otherCount, "Hug")
                     }
                 }

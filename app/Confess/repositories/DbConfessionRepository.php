@@ -1,8 +1,9 @@
 <?php namespace Confess\Repositories;
 
-use Auth, URL, Cache;
+use Auth, URL, Cache, Request;
 use Confess\Models\Confession;
 use Confess\Models\ConfessionComment;
+use Confess\Models\Vote;
 
 class DbConfessionRepository implements ConfessionRepositoryInterface
 {
@@ -52,6 +53,22 @@ class DbConfessionRepository implements ConfessionRepositoryInterface
         return $confession->comments()->save( ConfessionComment::create( array( 'content'=>trim( $content ) ) ) );
     }
 
+    public function addVote( $hash, $value ) {
+        $confession = $this->byHash( $hash );
+        $vote = Vote::firstOrNew( array( 'confession_id'=>$confession->id, 'user_ip'=>ip2long( Request::getClientIp() ) ) );
+        $status = 201;
+        if ( $vote->exists && $vote->vote == $value ) {
+            $status = 304;
+        } else if ( $vote->exists && $vote->vote != $value ) {
+                $status = 200;
+            }
+        if ( $status != 304 ) {
+            $vote->vote = $value;
+            $vote->save();
+        }
+        return $status;
+    }
+
     /**
      * Create a new Confession.
      *
@@ -59,13 +76,13 @@ class DbConfessionRepository implements ConfessionRepositoryInterface
      * @return Post
      */
     public function create( $content ) {
-        return Confession::create( array( 'link'=>$this->getNewHash(), 'confession'=>trim($content) ) );
+        return Confession::create( array( 'link'=>$this->getNewHash(), 'confession'=>trim( $content ) ) );
     }
 
     private function getNewHash() {
-            $confession = Confession::orderBy('id', 'DESC')->first();
-            $lastID = (isset($confession)) ? $confession->id : 0;
-        return \PseudoCrypt\PseudoCrypt::hash(++$lastID);
+        $confession = Confession::orderBy( 'id', 'DESC' )->first();
+        $lastID = ( isset( $confession ) ) ? $confession->id : 0;
+        return \PseudoCrypt\PseudoCrypt::hash( ++$lastID );
     }
 
 }
