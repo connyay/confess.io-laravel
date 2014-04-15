@@ -37,6 +37,7 @@ $placeHolder = $placeHolderArr[array_rand($placeHolderArr)];
     <div class="text-right">
     <button class="btn btn--green btn-xs" data-toggle="modal" data-target="#formatModal">Formatting</button>
   </div>
+  {{ Form::honeypot('name', 'email') }}
   {{ Form::submit('Confess', array('id'=>'submitBtn', 'class' => 'btn btn-lg btn--green', 'disabled' => '')) }}
   {{ Form::close() }}
   

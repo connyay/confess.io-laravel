@@ -35,6 +35,8 @@ class ConfessionController extends BaseConfessionController {
         // Declare the rules for the form validation
         $rules = array(
             'confession' => 'required|min:3',
+            'name'   => 'honeypot',
+            'email'   => 'required|honeytime:3'
         );
 
         // Validate the inputs

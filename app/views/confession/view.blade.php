@@ -16,6 +16,7 @@
 			'5')) }}
 		</div>
 	</div>
+	{{ Form::honeypot('name', 'email') }}
 	{{ Form::submit('Submit', array('class' => 'btn btn-lg btn--green btn-block')) }}
 	{{ Form::close() }}
 	<p>{{{ $confession->comments->count() }}} {{{ Str::plural('Comment', $confession->comments->count()) }}}</p>

@@ -15,6 +15,8 @@ class ConfessionCommentController extends BaseConfessionController {
         // Declare the rules for the form validation
         $rules = array(
             'comment' => 'required|min:3',
+            'name'   => 'honeypot',
+            'email'   => 'required|honeytime:3'
         );
 
         // Validate the inputs
@@ -23,7 +25,7 @@ class ConfessionCommentController extends BaseConfessionController {
         // Check if the form validates with success
         if ( $validator->passes() ) {
             $comment = $this->confessions->addComment( $hash, Input::get( 'comment' ) );
-            if ( isset($comment) ) {
+            if ( isset( $comment ) ) {
                 $data = array(
                     'body'=>$comment->content,
                     'subject'=>'New Comment // ' . $comment->confession->hash,
@@ -40,8 +42,8 @@ class ConfessionCommentController extends BaseConfessionController {
         return Redirect::to( $redirect )->withInput()->withErrors( $validator );
     }
 
-    public function approve($hash, $id, $pass) {
-        $comment = $this->confessions->approveConfessionComment($hash, $id, $pass);
+    public function approve( $hash, $id, $pass ) {
+        $comment = $this->confessions->approveConfessionComment( $hash, $id, $pass );
         return Redirect::to( 'n/'.$comment->confession->hash )->with( 'success', 'Confession Comment Approved' );
     }
 
