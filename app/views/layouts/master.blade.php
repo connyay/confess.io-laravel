@@ -66,7 +66,7 @@
                     <div class="col-12  col-sm-7  col-lg-5  col-lg-offset-3  text-right  hard--right">
                     <h3 class="footer--main-logo">Confess.io</h3>
                     <p>
-                    Built with love by <a href="http://twitter.com/_connyay" target="_blank" class="underline">@_connyay</a> &#169; {{ date('Y') }}
+                    Built with ♥ by <a href="http://twitter.com/_connyay" target="_blank" class="underline">@_connyay</a>
                     </p>
                   </div>
                 </div>
