@@ -49,11 +49,11 @@ class ConfessionController extends BaseConfessionController {
 
             // Do we have a confession?
             if ( $confession ) {
-                $redirect = 'n/'.$confession->link;
+                $redirect = 'n/'.$confession->hash;
                 $data = array(
                     'body'=>$confession->confession,
-                    'subject'=>'New Post // ' . $confession->link,
-                    'url'=> link_to_route( 'approveConfession', 'Approve', array( 'link'=>$confession->link, 'pass'=>$confession->pass ) ) );
+                    'subject'=>'New Post // ' . $confession->hash,
+                    'url'=> link_to_route( 'approveConfession', 'Approve', array( 'hash'=>$confession->hash, 'pass'=>$confession->pass ) ) );
                 $this->sendApprovalEmail( $data );
                 // Redirect to this confession page
                 return Redirect::to( $redirect )->with( 'success', 'Thank you. Your confession is pending approval.' );
