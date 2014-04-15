@@ -1,31 +1,21 @@
-<!-- Post Title -->
-	<div class="row">
-		<div class="col-md-12">
-		<h5> <strong><a href="{{{ $post->url() }}}">{{ String::title($post->title) }}</a></strong>
-		</h5>
-		<!-- ./ post title -->
-		<!-- Post Content -->
-		<p>{{ String::tidy(Str::words($post->content)) }}</p>
-		@if(str_word_count($post->content) > 100)
-		<p>
-		<a href="{{{ $post->url() }}}">Continue Reading &raquo;</a>
-		</p>
-		@endif
-		<!-- ./ post content -->
-		<!-- Post Footer -->
-		<p></p>
-		<p> <i class="icon-user"></i>
-		by
-		<span class="muted">{{{ $post->author->username }}}</span>
-		| <i class="icon-calendar"></i>
-		{{{ $post->date() }}}
-		|
-		<i class="icon-comment"></i>
-		<a href="{{{ $post->
-		url() }}}">{{$post->comments()->count()}} {{ Str::plural('Comment', $post->comments()->count()) }}
-		</a>
-		</p>
-	</div>
+
+<h4 class="blog-post-title">
+@if ($single) {{ $post->title }}
+@else {{ link_to($post->url(), $post->title) }}
+@endif
+</h4>
+<ul class="list-unstyled  tags  blog-tags">
+    <li><p title="{{ $post->created_at }}">{{ $post->date() }}</p></li>
+    <li><p title="{{ $post->author->username }}">{{ $post->author->username }}</p></li>
+</ul>
+<p>
+@if ($single) {{ $post->content() }}
+@else {{ Str::words($post->content()) }}
+@endif
+</p>
+@if(!$single && str_word_count($post->content) > 100)
+<div class="text-right">
+<a href="{{{ $post->url() }}}" class="btn btn-sm btn--green">Read More</a>
 </div>
-<!-- ./ post footer -->
+@endif
 <hr />

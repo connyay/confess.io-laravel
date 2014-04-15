@@ -3,8 +3,8 @@
 use View;
 use Confess\Models\BlogPost;
 
-class BlogController extends BaseController {
-
+class BlogController extends BaseController
+{
     /**
      * Post Model
      * @var BlogPost
@@ -19,47 +19,44 @@ class BlogController extends BaseController {
     {
         $this->post = $post;
     }
-    
-	/**
-	 * Returns all the blog posts.
-	 *
-	 * @return View
-	 */
-	public function index()
-	{
-		// Get all the blog posts
-		$posts = $this->post->orderBy('created_at', 'DESC')->paginate(10);
 
-		// Show the page
-		return View::make('blog/index', compact('posts'));
-	}
+    /**
+     * Returns all the blog posts.
+     *
+     * @return View
+     */
+    public function index()
+    {
+        // Get all the blog posts
+        $posts = $this->post->orderBy('created_at', 'DESC')->paginate(10);
 
-	/**
-	 * View a blog post.
-	 *
-	 * @param  string  $slug
-	 * @return View
-	 * @throws NotFoundHttpException
-	 */
-	public function view($slug)
-	{
-		$loopCount = 1;
-		// Get this blog post data
-		$post = $this->post->where('slug', '=', $slug)->first();
+        // Show the page
+        return View::make('blog/index', compact('posts'));
+    }
 
-		// Check if the blog post exists
-		if (is_null($post))
-		{
-			// If we ended up in here, it means that
-			// a page or a blog post didn't exist.
-			// So, this means that it is time for
-			// 404 error page.
-			return App::abort(404);
-		}
+    /**
+     * View a blog post.
+     *
+     * @param  string                $slug
+     * @return View
+     * @throws NotFoundHttpException
+     */
+    public function view($slug)
+    {
+        // Get this blog post data
+        $post = $this->post->where('slug', '=', $slug)->first();
 
-		// Get this post comments
-		$comments = $post->comments()->orderBy('created_at', 'ASC')->get();
-		// Show the page
-		return View::make('blog/view', compact('post', 'comments', 'loopCount'));
-	}
+        // Check if the blog post exists
+        if (is_null($post)) {
+            // If we ended up in here, it means that
+            // a page or a blog post didn't exist.
+            // So, this means that it is time for
+            // 404 error page.
+            return App::abort(404);
+        }
+
+
+        // Show the page
+        return View::make('blog/view', compact('post'));
+    }
 }

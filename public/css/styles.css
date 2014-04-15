@@ -503,6 +503,11 @@ h6,
     margin-right: 10px;
     margin-bottom: 20px;
 }
+.btn-sm {
+    padding: 5px 10px;
+    font-size: 1.5rem;
+}
+
 .btn-xs {
     padding: 3px 5px;
     font-size: 1.3rem;
