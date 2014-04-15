@@ -19,9 +19,9 @@
 	{{ Form::honeypot('name', 'email') }}
 	{{ Form::submit('Submit', array('class' => 'btn btn-lg btn--green btn-block')) }}
 	{{ Form::close() }}
-	<p>{{{ $confession->comments->count() }}} {{{ Str::plural('Comment', $confession->comments->count()) }}}</p>
-	
+	@if($confession->comments->count() > 0)
 	@include('confession._comments')
+	@endif
 	{{ $confession->twitterCard() }}
 </div>
 @section('scripts')
