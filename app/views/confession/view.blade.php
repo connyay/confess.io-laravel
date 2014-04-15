@@ -18,7 +18,7 @@
 	</div>
 	{{ Form::submit('Submit', array('class' => 'btn btn-lg btn--green btn-block')) }}
 	{{ Form::close() }}
-	<p>{{{ $comments->count() }}} {{{ Str::plural('Comment', $comments->count()) }}}</p>
+	<p>{{{ $confession->comments->count() }}} {{{ Str::plural('Comment', $confession->comments->count()) }}}</p>
 	
 	@include('confession._comments')
 	{{ $confession->twitterCard() }}

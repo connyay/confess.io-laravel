@@ -1,6 +1,6 @@
 <a id="comments"><ul class="media-list"></a>
 <? $count = 0; ?>
-@foreach ($comments as $comment)
+@foreach ($confession->comments as $comment)
 <li class="media">
 	<hr>
 	<div class="pull-left">

@@ -75,25 +75,12 @@ class ConfessionController extends BaseConfessionController {
     public function view( $hash ) {
         // Get this confession data
         $confession = $this->confessions->byHash( $hash );
-
-        // Check if the confession exists
-        if ( is_null( $confession ) ) {
-            // If we ended up in here, it means that
-            // a page or a confession didn't exist.
-            // So, this means that it is time for
-            // 404 error page.
-            return App::abort( 404 );
-        }
-
-        // Get this confession comments
-        $comments = $confession->comments()->orderBy( 'created_at', 'ASC' )->get();
-
         // Show the page
-        return View::make( 'confession/view', compact( 'confession', 'comments' ) );
+        return View::make( 'confession/view', compact( 'confession' ) );
     }
 
-    public function approve($hash, $pass) {
-        $confession = $this->confessions->approveConfession($hash, $pass);
+    public function approve( $hash, $pass ) {
+        $confession = $this->confessions->approveConfession( $hash, $pass );
         return Redirect::to( 'n/'.$confession->hash )->with( 'success', 'Confession Approved' );
     }
 
