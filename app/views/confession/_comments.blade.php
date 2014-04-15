@@ -1,4 +1,4 @@
-<ul class="media-list">
+<a id="comments"><ul class="media-list"></a>
 <? $count = 0; ?>
 @foreach ($comments as $comment)
 <li class="media">

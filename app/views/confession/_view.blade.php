@@ -7,8 +7,8 @@
 </h4>
 	<ul class="list-unstyled  tags  blog-tags">
 	<li><p title="{{ $confession->created_at }}">{{ $confession->date() }}</p></li>
-		<li><a href="{{{ $confession->
-	url() }}}">{{$confession->comments()->count()}} {{ Str::plural('Comment', $confession->comments()->count()) }}</a></li>
+		<li><a href="{{ $confession->
+	url() }}#comments">{{$confession->comments()->count()}} {{ Str::plural('Comment', $confession->comments()->count()) }}</a></li>
 </ul>
 <p>
 @if($single)
