@@ -13,9 +13,8 @@ class CreatePostsTable extends Migration
     {
         // Create the `blog_posts` table
         Schema::create('blog_posts', function ($table) {
-            $table->engine = 'InnoDB';
-            $table->increments('id')->unsigned();
-            $table->integer('user_id')->unsigned();
+            $table->increments('id');
+            $table->integer('user_id');
             $table->string('title');
             $table->string('slug');
             $table->text('content');

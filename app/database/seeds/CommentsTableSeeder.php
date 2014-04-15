@@ -1,5 +1,5 @@
 <?php
-
+use \Confess\Models\BlogPost;
 class CommentsTableSeeder extends Seeder
 {
     protected $content1 = 'Lorem ipsum dolor sit amet, mutat utinam nonumy ea mel.';

@@ -13,9 +13,8 @@ class CreateCommentsTable extends Migration
     {
         // Create the `blog_comments` table
         Schema::create('blog_comments', function ($table) {
-            $table->engine = 'InnoDB';
-            $table->increments('id')->unsigned();
-            $table->integer('blog_post_id')->unsigned();
+            $table->increments('id');
+            $table->integer('blog_post_id');
             $table->text('content');
             $table->boolean('approved')->default(false);
             $table->timestamps();
