@@ -24,7 +24,7 @@ class DbConfessionRepository implements ConfessionRepositoryInterface
      * @return array
      */
     public function paginate( $per_page = 10 ) {
-        return Confession::where( 'approved', true )->with('votes', 'comments')->orderBy( 'id', 'DESC' )->paginate( $per_page );
+        return Confession::where( 'approved', true )->rememberForever()->cacheTags( 'paginated-confessions' )->with('votes', 'comments')->orderBy( 'id', 'DESC' )->paginate( $per_page );
     }
 
     /**
