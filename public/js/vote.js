@@ -1,17 +1,13 @@
 jQuery(function ($) {
+    var _token = $('meta[name="csrf-token"]').attr('content');
     var puralize = function (count, text) {
-        if (count === 1) {
-            return "1 " + text
-        } else {
-            return count + " " + text + "s"
-        }
+        return count + " " + text + ((count === 1) ? "" : "s");
     };
-    var doVote = function (e, id, vote, target) {
+    var doVote = function (e, hash, vote, target) {
         $.ajax({
             type: "POST",
-            url: "/ns/vote",
+            url: "/n/" + hash + "/vote",
             data: {
-                id: id,
                 vote: vote,
                 _token: _token
             },
@@ -50,7 +46,7 @@ jQuery(function ($) {
         $this = $(this);
         if (!$this.hasClass("active")) {
             $this.addClass("active").siblings().removeClass("active");
-            doVote(ev, $this.data("id"), $this.data("v"), this);
+            doVote(ev, $this.data("hash"), $this.data("v"), this);
         }
     });
 });
