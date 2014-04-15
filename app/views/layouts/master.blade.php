@@ -60,7 +60,6 @@
                     <ul class="list-unstyled list-inline col-12  col-sm-5  col-lg-4">
                     <li><a href="{{ URL::to('about') }}">About</a></li>
                     <li><a href="{{ URL::to('blog') }}">Blog</a></li>
-                    <li><a href="{{ URL::to('contact') }}">Contact</a></li>
                     <li><a href="http://github.com/connyay/confess.io">Github</a></li>
                     <li><a href="http://twitter.com/confess_io">Twitter</a></li>
                   </ul>
