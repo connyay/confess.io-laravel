@@ -3,18 +3,17 @@
 use View, Validator, Input, Redirect;
 
 class ConfessionController extends BaseConfessionController {
-    
+
     /**
      * Display a listing of the resource.
      *
      * @return Response
      */
-    public function index()
-    {
+    public function index() {
         // Get all the confessions
         $confessions = $this->confessions->paginate();
         // Show the page
-        return View::make('confession/index', compact('confessions'));
+        return View::make( 'confession/index', compact( 'confessions' ) );
     }
 
     /**
@@ -22,9 +21,8 @@ class ConfessionController extends BaseConfessionController {
      *
      * @return Response
      */
-    public function create()
-    {
-        return View::make('confession/create');
+    public function create() {
+        return View::make( 'confession/create' );
     }
 
     /**
@@ -32,8 +30,7 @@ class ConfessionController extends BaseConfessionController {
      *
      * @return Response
      */
-    public function store()
-    {
+    public function store() {
         $redirect = 'n/new';
         // Declare the rules for the form validation
         $rules = array(
@@ -41,57 +38,63 @@ class ConfessionController extends BaseConfessionController {
         );
 
         // Validate the inputs
-        $validator = Validator::make(Input::all(), $rules);
+        $validator = Validator::make( Input::all(), $rules );
 
         // Check if the form validates with success
-        if ($validator->passes())
-        {
+        if ( $validator->passes() ) {
             // Save the confession
-            $confession = $this->confessions->create(Input::get('confession'));
-          
+            $confession = $this->confessions->create( Input::get( 'confession' ) );
+
             // Do we have a confession?
-            if($confession)
-            {
+            if ( $confession ) {
                 $redirect = 'n/'.$confession->link;
+                $data = array(
+                    'body'=>$confession->confession,
+                    'subject'=>'New Post // ' . $confession->link,
+                    'url'=> link_to_route( 'approveConfession', 'Approve', array( 'link'=>$confession->link, 'pass'=>$confession->pass ) ) );
+                $this->sendApprovalEmail( $data );
                 // Redirect to this confession page
-                return Redirect::to($redirect)->with('success', 'Thank you. Your confession is pending approval.');
+                return Redirect::to( $redirect )->with( 'success', 'Thank you. Your confession is pending approval.' );
             }
 
             // Redirect to this confession page
-            return Redirect::to($redirect)->with('error', 'Oops! There was a problem adding your comment, please try again.');
+            return Redirect::to( $redirect )->with( 'error', 'Oops! There was a problem adding your comment, please try again.' );
         }
 
         // Redirect to this confession page
-        return Redirect::to($redirect)->withInput()->withErrors($validator);
+        return Redirect::to( $redirect )->withInput()->withErrors( $validator );
     }
 
     /**
      * View a confession.
      *
-     * @param  string  $link
+     * @param string  $hash
      * @return View
      * @throws NotFoundHttpException
      */
-    public function view($link)
-    {
+    public function view( $hash ) {
         // Get this confession data
-        $confession = $this->confessions->byHash($link);
+        $confession = $this->confessions->byHash( $hash );
 
         // Check if the confession exists
-        if (is_null($confession))
-        {
+        if ( is_null( $confession ) ) {
             // If we ended up in here, it means that
             // a page or a confession didn't exist.
             // So, this means that it is time for
             // 404 error page.
-            return App::abort(404);
+            return App::abort( 404 );
         }
 
         // Get this confession comments
-        $comments = $confession->comments()->orderBy('created_at', 'ASC')->get();
+        $comments = $confession->comments()->orderBy( 'created_at', 'ASC' )->get();
 
         // Show the page
-        return View::make('confession/view', compact('confession', 'comments'));
+        return View::make( 'confession/view', compact( 'confession', 'comments' ) );
+    }
+
+    public function approve($hash, $pass) {
+        $confession = $this->confessions->approveConfession($hash, $pass);
+        return Redirect::to( 'n/'.$confession->hash )->with( 'success', 'Confession Approved' );
     }
 
 }

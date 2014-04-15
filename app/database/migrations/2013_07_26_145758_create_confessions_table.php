@@ -15,7 +15,7 @@ class CreateConfessionsTable extends Migration {
         // Create the `confessions` table
         Schema::create('confessions', function(Blueprint $table) {
             $table->increments('id');
-            $table->string('link', 6);
+            $table->string('hash', 6);
 			$table->text('confession');
 			$table->string('pass', 6);
             $table->boolean('approved')->default(false);

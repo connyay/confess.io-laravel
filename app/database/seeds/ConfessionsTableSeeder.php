@@ -40,7 +40,7 @@ Te his dolorem adversarium? Pri eu rebum viris, tation molestie id pri. Mel ei s
             $lastId = (isset($confession)) ? $confession->id : 0;
             $id = DB::table('confessions')->insert(
                 array(
-                    'link'=>\PseudoCrypt\PseudoCrypt::hash(++$lastId), 
+                    'hash'=>\PseudoCrypt\PseudoCrypt::hash(++$lastId), 
                     'confession'=> ($n === 1) ? 'This should be the only displayed confession.' : $this->contentArr[array_rand($this->contentArr)], 
                     'pass'=>Str::random(6),
                     'approved'=> 1,

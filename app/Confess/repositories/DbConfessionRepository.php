@@ -72,11 +72,20 @@ class DbConfessionRepository implements ConfessionRepositoryInterface
     /**
      * Create a new Confession.
      *
-     * @param string  $content
+     * @param string  $confession
      * @return Post
      */
-    public function create( $content ) {
-        return Confession::create( array( 'link'=>$this->getNewHash(), 'confession'=>trim( $content ) ) );
+    public function create( $confession ) {
+        return Confession::create( array( 'hash'=>$this->getNewHash(), 'confession'=>trim( $confession ) ) );
+    }
+
+    public function approveConfession($hash, $pass) {
+        $confession = $this->byHash($hash);
+        if($confession->pass == $pass) {
+            $confession->approved = true;
+            $confession->save();
+        }
+        return $confession;
     }
 
     private function getNewHash() {

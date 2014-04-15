@@ -1,5 +1,5 @@
 <?php namespace Confess\Controllers;
-
+use Mailgun;
 use Confess\Repositories\ConfessionRepositoryInterface;
 class BaseConfessionController extends BaseController
 {
@@ -20,6 +20,12 @@ class BaseConfessionController extends BaseController
     public function __construct(ConfessionRepositoryInterface $confessions)
     {
         $this->confessions = $confessions;
+    }
+
+    protected function sendApprovalEmail( $data ) {
+        Mailgun::send( 'emails.approve', $data, function( $message ) use ($data) {
+                $message->to( 'grouphug.io@gmail.com' )->subject( $data['subject'] );
+            } );
     }
 
 }

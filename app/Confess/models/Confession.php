@@ -3,7 +3,7 @@
 use URL, Str;
 
 class Confession extends BaseModel {
-	protected $fillable = array( 'link', 'confession' );
+	protected $fillable = array( 'hash', 'confession' );
 
 	public function save( array $options = array() ) {
 		$this->pass = Str::random( 6 );
@@ -80,6 +80,6 @@ class Confession extends BaseModel {
 	 * @return string
 	 */
 	public function url() {
-		return Url::to( 'n/'.$this->link );
+		return Url::to( 'n/'.$this->hash );
 	}
 }

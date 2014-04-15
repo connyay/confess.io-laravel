@@ -23,10 +23,14 @@ Route::group( array( 'namespace' => 'Confess\Controllers' ), function () {
 		Route::get( 'n/new', 'ConfessionController@create' );
 		Route::post( 'n/new', 'ConfessionController@store' );
 
-		Route::get( 'n/{link}', 'ConfessionController@view' );
+		Route::get( 'n/{hash}', 'ConfessionController@view' );
 
-		Route::post( 'n/{link}/vote', 'ConfessionVoteController@vote' );
-		Route::post( 'n/{link}/comment', 'ConfessionCommentController@comment' );
+		Route::post( 'n/{hash}/vote', 'ConfessionVoteController@vote' );
+		Route::post( 'n/{hash}/comment', 'ConfessionCommentController@comment' );
+
+		Route::get( 'n/{hash}/approve/{pass}', array('as' => 'approveConfession', 'uses' => 'ConfessionController@approve') );
+		Route::get( 'n/{hash}/approve/comment/{pass}', array('as' => 'approveConfessionComment', 'uses' => 'ConfessionCommentController@approve') );
+
 
 		// Posts - Index
 		Route::get( 'blog', 'BlogController@getIndex' );

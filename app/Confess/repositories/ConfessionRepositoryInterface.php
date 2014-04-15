@@ -37,6 +37,8 @@ interface ConfessionRepositoryInterface
 
     public function addComment( $hash, $content );
 
+    public function approveConfession($hash, $pass);
+    
     /**
      * Create a new Confession.
      *
