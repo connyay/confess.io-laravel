@@ -61,7 +61,7 @@
                     <li><a href="{{ URL::to('about') }}">About</a></li>
                     <li><a href="{{ URL::to('blog') }}">Blog</a></li>
                     <li><a href="{{ URL::to('contact') }}">Contact</a></li>
-                    <li><a href="http://github.com/connyay/confess">Github</a></li>
+                    <li><a href="http://github.com/connyay/confess.io">Github</a></li>
                     <li><a href="http://twitter.com/confess_io">Twitter</a></li>
                   </ul>
                     <div class="col-12  col-sm-7  col-lg-5  col-lg-offset-3  text-right  hard--right">
