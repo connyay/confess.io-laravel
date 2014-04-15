@@ -111,6 +111,7 @@ return array(
 
 		'Bogardo\Mailgun\MailgunServiceProvider',
 		'Msurguy\Honeypot\HoneypotServiceProvider',
+		'Barryvdh\Debugbar\ServiceProvider',
 	),
 
 	/*
