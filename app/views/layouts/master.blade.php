@@ -74,7 +74,9 @@
               </section><!-- footer -->
               <!-- jQuery -->
               <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+              <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-growl/1.0.0/jquery.bootstrap-growl.min.js"></script>
               {{ HTML::script('js/bootstrap.min.js') }}
               @yield('scripts')
+              @include('notifications')
             </body>
           </html>

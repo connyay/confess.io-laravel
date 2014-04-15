@@ -51,7 +51,7 @@ class ConfessionController extends BaseConfessionController
             $confession = $this->confessions->create( Input::get( 'confession' ) );
 
             // Do we have a confession?
-            if ($confession) {
+            if (isset($confession)) {
                 $redirect = 'n/'.$confession->hash;
                 $data = array(
                     'body'=>$confession->confession,
