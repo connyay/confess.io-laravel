@@ -1,7 +1,8 @@
 <?php
 use \Confess\Models\Confession;
-class ConfessionsTableSeeder extends Seeder {
-    protected  $contentArr = [];
+class ConfessionsTableSeeder extends Seeder
+{
+    protected $contentArr = [];
     protected $content = 'In mea autem etiam menandri, quot elitr vim ei, eos semper disputationi id? Per facer appetere eu, duo et animal maiestatis. Omnesque invidunt mnesarchum ex mel, vis no case senserit dissentias. Te mei minimum singulis inimicus, ne labores accusam necessitatibus vel, vivendo nominavi ne sed. Posidonium scriptorem consequuntur cum ex? Posse fabulas iudicabit in nec, eos cu electram forensibus, pro ei commodo tractatos reformidans. Qui eu lorem augue alterum, eos in facilis pericula mediocritatem?
 
 Est hinc legimus oporteat in. Sit ei melius delicatissimi. Duo ex qualisque adolescens! Pri cu solum aeque. Aperiri docendi vituperatoribus has ea!
@@ -25,23 +26,21 @@ Te his dolorem adversarium? Pri eu rebum viris, tation molestie id pri. Mel ei s
     protected $content1 = 'Lorem ipsum dolor sit amet, mutat utinam nonumy ea mel.';
     protected $content2 = 'Lorem ipsum dolor sit amet, sale ceteros liberavisse duo ex, nam mazim maiestatis dissentiunt no. Iusto nominavi cu sed, has.';
     protected $content3 = 'Et consul eirmod feugait mel! Te vix iuvaret feugiat repudiandae. Solet dolore lobortis mei te, saepe habemus imperdiet ex vim. Consequat signiferumque per no, ne pri erant vocibus invidunt te.';
-    
 
     public function run()
-    {   
+    {
         array_push($this->contentArr, $this->content, $this->content1, $this->content2, $this->content3);
         DB::table('confessions')->delete();
         DB::statement('ALTER TABLE `confessions` AUTO_INCREMENT = 1');
 
-
-        foreach(range(1, 100) as $n) {
+        foreach (range(1, 100) as $n) {
             $confession = Confession::orderBy('id', 'DESC')->first();
 
             $lastId = (isset($confession)) ? $confession->id : 0;
             $id = DB::table('confessions')->insert(
                 array(
-                    'hash'=>\PseudoCrypt\PseudoCrypt::hash(++$lastId), 
-                    'confession'=> ($n === 1) ? 'This should be the only displayed confession.' : $this->contentArr[array_rand($this->contentArr)], 
+                    'hash'=>\PseudoCrypt\PseudoCrypt::hash(++$lastId),
+                    'confession'=> ($n === 1) ? 'This should be the only displayed confession.' : $this->contentArr[array_rand($this->contentArr)],
                     'pass'=>Str::random(6),
                     'approved'=> 1,
                     'created_at' => new DateTime,
@@ -49,5 +48,5 @@ Te his dolorem adversarium? Pri eu rebum viris, tation molestie id pri. Mel ei s
                     )
                 );
         }
-	}
+    }
 }

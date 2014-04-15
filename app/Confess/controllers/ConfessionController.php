@@ -2,14 +2,15 @@
 
 use View, Validator, Input, Redirect;
 
-class ConfessionController extends BaseConfessionController {
-
+class ConfessionController extends BaseConfessionController
+{
     /**
      * Display a listing of the resource.
      *
      * @return Response
      */
-    public function index() {
+    public function index()
+    {
         // Get all the confessions
         $confessions = $this->confessions->paginate();
         // Show the page
@@ -21,7 +22,8 @@ class ConfessionController extends BaseConfessionController {
      *
      * @return Response
      */
-    public function create() {
+    public function create()
+    {
         return View::make( 'confession/create' );
     }
 
@@ -30,7 +32,8 @@ class ConfessionController extends BaseConfessionController {
      *
      * @return Response
      */
-    public function store() {
+    public function store()
+    {
         $redirect = 'n/new';
         // Declare the rules for the form validation
         $rules = array(
@@ -48,7 +51,7 @@ class ConfessionController extends BaseConfessionController {
             $confession = $this->confessions->create( Input::get( 'confession' ) );
 
             // Do we have a confession?
-            if ( $confession ) {
+            if ($confession) {
                 $redirect = 'n/'.$confession->hash;
                 $data = array(
                     'body'=>$confession->confession,
@@ -70,19 +73,22 @@ class ConfessionController extends BaseConfessionController {
     /**
      * View a confession.
      *
-     * @param string  $hash
+     * @param  string                $hash
      * @return View
      * @throws NotFoundHttpException
      */
-    public function view( $hash ) {
+    public function view($hash)
+    {
         // Get this confession data
         $confession = $this->confessions->byHash( $hash );
         // Show the page
         return View::make( 'confession/view', compact( 'confession' ) );
     }
 
-    public function approve( $hash, $pass ) {
+    public function approve($hash, $pass)
+    {
         $confession = $this->confessions->approveConfession( $hash, $pass );
+
         return Redirect::to( 'n/'.$confession->hash )->with( 'success', 'Confession Approved' );
     }
 

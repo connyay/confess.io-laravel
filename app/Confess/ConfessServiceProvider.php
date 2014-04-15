@@ -43,6 +43,6 @@ class ConfessServiceProvider extends ServiceProvider
         return array();
     }
 
-    public function register(){}
+    public function register() {}
 
 }

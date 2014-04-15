@@ -22,8 +22,9 @@ class BaseConfessionController extends BaseController
         $this->confessions = $confessions;
     }
 
-    protected function sendApprovalEmail( $data ) {
-        Mailgun::send( 'emails.approve', $data, function( $message ) use ($data) {
+    protected function sendApprovalEmail($data)
+    {
+        Mailgun::send( 'emails.approve', $data, function ($message) use ($data) {
                 $message->to( 'grouphug.io@gmail.com' )->subject( $data['subject'] );
             } );
     }

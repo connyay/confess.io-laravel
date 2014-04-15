@@ -6,16 +6,16 @@
 @stop
 {{-- Content --}}
 @section('content')
-	<div class="col-lg-8 col-lg-offset-2 blog">
-	<h6 class="blog-post-sub-title text-right">Displaying {{ $confessions->getFrom() }} - {{ $confessions->getTo() }} of {{ $confessions->getTotal() }} Confessions</h6>
-	
-	@foreach ($confessions as $confession)
-	@include('confession._view', array('single'=>false))
-	@endforeach
-	<div class="text-center">
-		{{ $confessions->links() }}
-	</div>
-	
+    <div class="col-lg-8 col-lg-offset-2 blog">
+    <h6 class="blog-post-sub-title text-right">Displaying {{ $confessions->getFrom() }} - {{ $confessions->getTo() }} of {{ $confessions->getTotal() }} Confessions</h6>
+
+    @foreach ($confessions as $confession)
+    @include('confession._view', array('single'=>false))
+    @endforeach
+    <div class="text-center">
+        {{ $confessions->links() }}
+    </div>
+
 </div>
 @section('scripts')
 {{ HTML::script('js/vote.js') }}

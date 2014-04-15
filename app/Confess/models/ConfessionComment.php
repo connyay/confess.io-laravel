@@ -1,11 +1,12 @@
 <?php namespace Confess\Models;
 use Str;
 
-class ConfessionComment extends BaseModel {
-
+class ConfessionComment extends BaseModel
+{
     protected $fillable = array( 'content' );
-    
-    public function save( array $options = array() ) {
+
+    public function save( array $options = array() )
+    {
         $this->pass = Str::random(6);
         parent::save( $options );
     }
@@ -15,7 +16,8 @@ class ConfessionComment extends BaseModel {
      *
      * @return string
      */
-    public function content() {
+    public function content()
+    {
         return nl2br( $this->content );
     }
 
@@ -24,17 +26,19 @@ class ConfessionComment extends BaseModel {
      *
      * @return Confession
      */
-    public function confession() {
+    public function confession()
+    {
         return $this->belongsTo( '\Confess\Models\Confession' );
     }
 
     /**
      * Get the date the post was created.
      *
-     * @param \Carbon|null $date
+     * @param  \Carbon|null $date
      * @return string
      */
-    public function date() {
+    public function date()
+    {
         return \Carbon\Carbon::createFromTimeStamp( strtotime( $this->created_at ) )->diffForHumans();
     }
 
@@ -44,7 +48,8 @@ class ConfessionComment extends BaseModel {
      *
      * @return string
      */
-    public function created_at() {
+    public function created_at()
+    {
         return $this->date( $this->created_at );
     }
 
@@ -54,7 +59,8 @@ class ConfessionComment extends BaseModel {
      *
      * @return string
      */
-    public function updated_at() {
+    public function updated_at()
+    {
         return $this->date( $this->updated_at );
     }
 

@@ -1,15 +1,16 @@
 <?php namespace Confess\Controllers;
 
 use Validator, Redirect, Input;
-class ConfessionCommentController extends BaseConfessionController {
-
+class ConfessionCommentController extends BaseConfessionController
+{
     /**
      * Comment on a confession.
      *
-     * @param string  $hash
+     * @param  string   $hash
      * @return Redirect
      */
-    public function comment( $hash ) {
+    public function comment($hash)
+    {
         $redirect = 'n/'.$hash;
 
         // Declare the rules for the form validation
@@ -42,8 +43,10 @@ class ConfessionCommentController extends BaseConfessionController {
         return Redirect::to( $redirect )->withInput()->withErrors( $validator );
     }
 
-    public function approve( $hash, $id, $pass ) {
+    public function approve($hash, $id, $pass)
+    {
         $comment = $this->confessions->approveConfessionComment( $hash, $id, $pass );
+
         return Redirect::to( 'n/'.$comment->confession->hash )->with( 'success', 'Confession Comment Approved' );
     }
 

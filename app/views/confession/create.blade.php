@@ -5,7 +5,7 @@
 &raquo; Write
 @stop
 {{-- Content --}}
-<?
+<?php
 $placeHolderArr = ["What is on your mind?", "Something you want to get off your chest?",
 "Something bothering you?", "Lay it on us.", "Want to talk about it?"];
 $placeHolder = $placeHolderArr[array_rand($placeHolderArr)];
@@ -39,8 +39,8 @@ $placeHolder = $placeHolderArr[array_rand($placeHolderArr)];
   {{ Form::honeypot('name', 'email') }}
   {{ Form::submit('Confess', array('id'=>'submitBtn', 'class' => 'btn btn-lg btn--green', 'disabled' => '')) }}
   {{ Form::close() }}
-  
-  
+
+
 </div>
 <!-- Modals -->
   <div id="formatModal" class="modal fade">

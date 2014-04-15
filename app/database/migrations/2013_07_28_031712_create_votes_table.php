@@ -3,8 +3,8 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateVotesTable extends Migration {
-
+class CreateVotesTable extends Migration
+{
     /**
      * Run the migrations.
      *
@@ -12,11 +12,11 @@ class CreateVotesTable extends Migration {
      */
     public function up()
     {
-        Schema::create('votes', function(Blueprint $table) {
+        Schema::create('votes', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('confession_id');
-			$table->integer('user_ip');
-			$table->boolean('vote');
+            $table->integer('user_ip');
+            $table->boolean('vote');
         });
     }
 

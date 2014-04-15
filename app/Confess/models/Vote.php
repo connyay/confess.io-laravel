@@ -1,8 +1,8 @@
 <?php namespace Confess\Models;
 
-class Vote extends BaseModel {
-
-	public $timestamps = false;
+class Vote extends BaseModel
+{
+    public $timestamps = false;
     protected $guarded = array();
 
     public static $rules = array();

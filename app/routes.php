@@ -12,31 +12,31 @@
 */
 
 
-Route::get( 'about', function() {
-		// Return about us page
-		return View::make( 'site/about' );
-	} );
+Route::get( 'about', function () {
+        // Return about us page
+        return View::make( 'site/about' );
+    } );
 
 Route::group( array( 'namespace' => 'Confess\Controllers' ), function () {
-		Route::get( 'ns', 'ConfessionController@index' );
+        Route::get( 'ns', 'ConfessionController@index' );
 
-		Route::get( 'n/new', 'ConfessionController@create' );
-		Route::post( 'n/new', 'ConfessionController@store' );
+        Route::get( 'n/new', 'ConfessionController@create' );
+        Route::post( 'n/new', 'ConfessionController@store' );
 
-		Route::get( 'n/{hash}', 'ConfessionController@view' );
+        Route::get( 'n/{hash}', 'ConfessionController@view' );
 
-		Route::post( 'n/{hash}/vote', 'ConfessionVoteController@vote' );
-		Route::post( 'n/{hash}/comment', 'ConfessionCommentController@comment' );
+        Route::post( 'n/{hash}/vote', 'ConfessionVoteController@vote' );
+        Route::post( 'n/{hash}/comment', 'ConfessionCommentController@comment' );
 
-		Route::get( 'n/{hash}/approve/{pass}', array('as' => 'approveConfession', 'uses' => 'ConfessionController@approve') );
-		Route::get( 'n/{hash}/approve/comment/{id}/{pass}', array('as' => 'approveConfessionComment', 'uses' => 'ConfessionCommentController@approve') );
+        Route::get( 'n/{hash}/approve/{pass}', array('as' => 'approveConfession', 'uses' => 'ConfessionController@approve') );
+        Route::get( 'n/{hash}/approve/comment/{id}/{pass}', array('as' => 'approveConfessionComment', 'uses' => 'ConfessionCommentController@approve') );
 
 
-		// Posts - Index
-		Route::get( 'blog', 'BlogController@getIndex' );
-		Route::get( 'blog/{postSlug}', 'BlogController@getView' );
-		Route::post( 'blog/{postSlug}', 'BlogController@postView' );
+        // Posts - Index
+        Route::get( 'blog', 'BlogController@getIndex' );
+        Route::get( 'blog/{postSlug}', 'BlogController@getView' );
+        Route::post( 'blog/{postSlug}', 'BlogController@postView' );
 
-		// Index Page - Last route, no matches
-		Route::get( '/', 'ConfessionController@index' );
-	} );
+        // Index Page - Last route, no matches
+        Route::get( '/', 'ConfessionController@index' );
+    } );
