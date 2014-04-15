@@ -1,6 +1,6 @@
 <?php namespace Confess\Controllers;
 
-use View, Validator, Input, Redirect;
+use View, Validator, Input, Redirect, Twitter;
 
 class ConfessionController extends BaseConfessionController
 {
@@ -88,7 +88,7 @@ class ConfessionController extends BaseConfessionController
     public function approve($hash, $pass)
     {
         $confession = $this->confessions->approveConfession( $hash, $pass );
-
+        Twitter::postTweet(array('status' => 'New Confession » ' . $confession->url(), 'format' => 'json'));
         return Redirect::to( 'n/'.$confession->hash )->with( 'success', 'Confession Approved' );
     }
 

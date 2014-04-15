@@ -13,7 +13,8 @@
 		"nesbot/Carbon": "*",
 		"bogardo/mailgun": "dev-master",
 		"msurguy/honeypot": "dev-master",
-		"connyay/PseudoCrypt": "dev-master"
+		"connyay/PseudoCrypt": "dev-master",
+		"thujohn/twitter": "dev-master"
 	},
 	"require-dev": {
 		"barryvdh/laravel-debugbar": "1.*"

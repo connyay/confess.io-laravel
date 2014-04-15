@@ -96,7 +96,7 @@ class DbConfessionRepository implements ConfessionRepositoryInterface
             $confession->approved = true;
             $confession->save();
         }
-
+        Cache::tags( 'paginated-confessions' )->flush();
         return $confession;
     }
 

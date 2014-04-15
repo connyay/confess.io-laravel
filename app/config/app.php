@@ -111,6 +111,7 @@ return array(
 
         'Bogardo\Mailgun\MailgunServiceProvider',
         'Msurguy\Honeypot\HoneypotServiceProvider',
+        'Thujohn\Twitter\TwitterServiceProvider',
         'Barryvdh\Debugbar\ServiceProvider',
     ),
 
@@ -177,6 +178,8 @@ return array(
         'URL'             => 'Illuminate\Support\Facades\URL',
         'Validator'       => 'Illuminate\Support\Facades\Validator',
         'View'            => 'Illuminate\Support\Facades\View',
+
+        'Twitter' => 'Thujohn\Twitter\TwitterFacade',
 
     ),
 
