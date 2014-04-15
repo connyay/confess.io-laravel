@@ -33,9 +33,8 @@ Route::group( array( 'namespace' => 'Confess\Controllers' ), function () {
 
 
         // Posts - Index
-        Route::get( 'blog', 'BlogController@getIndex' );
-        Route::get( 'blog/{postSlug}', 'BlogController@getView' );
-        Route::post( 'blog/{postSlug}', 'BlogController@postView' );
+        Route::get( 'blog', 'BlogController@index' );
+        Route::get( 'blog/{postSlug}', 'BlogController@view' );
 
         // Index Page - Last route, no matches
         Route::get( '/', 'ConfessionController@index' );
