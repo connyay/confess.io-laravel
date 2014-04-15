@@ -1,6 +1,6 @@
 <?php namespace Confess\Repositories;
 
-use Auth, URL, Thumb, DB;
+use Auth, URL, Cache;
 use Confess\Models\Confession;
 use Confess\Models\ConfessionComment;
 
@@ -49,22 +49,23 @@ class DbConfessionRepository implements ConfessionRepositoryInterface
     public function addComment( $hash, $content ) {
         $confession = $this->byHash( $hash );
 
-        $comment = new ConfessionComment;
-        $comment->content = trim( $content );
-
-
-        return $confession->comments()->save( $comment );
+        return $confession->comments()->save( ConfessionComment::create( array( 'content'=>trim( $content ) ) ) );
     }
 
     /**
      * Create a new Confession.
      *
-     * @param string  $url
+     * @param string  $content
      * @return Post
      */
-    public function create() {
+    public function create( $content ) {
+        return Confession::create( array( 'link'=>$this->getNewHash(), 'confession'=>trim($content) ) );
+    }
 
-        return Confession::create( compact( 'url', 'thumb' ) );
+    private function getNewHash() {
+            $confession = Confession::orderBy('id', 'DESC')->first();
+            $lastID = (isset($confession)) ? $confession->id : 0;
+        return \PseudoCrypt\PseudoCrypt::hash(++$lastID);
     }
 
 }

@@ -42,6 +42,6 @@ interface ConfessionRepositoryInterface
      *
      * @return Confession
      */
-    public function create( );
+    public function create( $content );
 
 }

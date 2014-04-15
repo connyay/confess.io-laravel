@@ -47,18 +47,12 @@ class ConfessionController extends BaseConfessionController {
         if ($validator->passes())
         {
             // Save the confession
-            $lastId = $confession = Confession::orderBy('id', 'DESC')->first()->id;
-
-            $confession = new Confession;
-            $confession->confession = trim(Input::get('confession'));
-            $confession->pass = Str::random(6);
-            $confession->approved = true;
-            $link = PseudoCrypt::hash(++$lastId);
-            $confession->link = $link;
-            $redirect = 'n/'.$link;
-            // Was the comment saved with success?
-            if($confession->save())
+            $confession = $this->confessions->create(Input::get('confession'));
+          
+            // Do we have a confession?
+            if($confession)
             {
+                $redirect = 'n/'.$confession->link;
                 // Redirect to this confession page
                 return Redirect::to($redirect)->with('success', 'Thank you. Your confession is pending approval.');
             }
