@@ -1,6 +1,6 @@
 <?php namespace Confess\Repositories;
 
-use Auth, URL, Cache, Request;
+use Auth, URL, Cache, Request, Twitter;
 use Confess\Models\Confession;
 use Confess\Models\ConfessionComment;
 use Confess\Models\Vote;
@@ -95,6 +95,9 @@ class DbConfessionRepository implements ConfessionRepositoryInterface
         if ($confession->pass == $pass) {
             $confession->approved = true;
             $confession->save();
+        }
+        if (App::environment('production')) {
+           Twitter::postTweet(array('status' => 'New Confession » ' . $confession->url(), 'format' => 'json'));
         }
         Cache::tags( 'paginated-confessions' )->flush();
         return $confession;
