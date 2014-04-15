@@ -22,7 +22,13 @@ class ConfessionCommentController extends BaseConfessionController {
 
         // Check if the form validates with success
         if ( $validator->passes() ) {
-            if ( $this->confessions->addComment( $hash, Input::get( 'comment' ) ) ) {
+            $comment = $this->confessions->addComment( $hash, Input::get( 'comment' ) );
+            if ( isset($comment) ) {
+                $data = array(
+                    'body'=>$comment->content,
+                    'subject'=>'New Comment // ' . $comment->confession->hash,
+                    'url'=> link_to_route( 'approveConfessionComment', 'Approve', array( 'hash'=>$comment->confession->hash, 'id'=>$comment->id, 'pass'=>$comment->pass ) ) );
+                $this->sendApprovalEmail( $data );
                 // Redirect to this confession page
                 return Redirect::to( $redirect )->with( 'success', 'Thank you for your comment. Your comment will be posted once it is approved.' );
             }
@@ -32,6 +38,11 @@ class ConfessionCommentController extends BaseConfessionController {
 
         // Redirect to this confession page
         return Redirect::to( $redirect )->withInput()->withErrors( $validator );
+    }
+
+    public function approve($hash, $id, $pass) {
+        $comment = $this->confessions->approveConfessionComment($hash, $id, $pass);
+        return Redirect::to( 'n/'.$comment->confession->hash )->with( 'success', 'Confession Comment Approved' );
     }
 
 }

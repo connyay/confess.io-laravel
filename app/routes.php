@@ -29,7 +29,7 @@ Route::group( array( 'namespace' => 'Confess\Controllers' ), function () {
 		Route::post( 'n/{hash}/comment', 'ConfessionCommentController@comment' );
 
 		Route::get( 'n/{hash}/approve/{pass}', array('as' => 'approveConfession', 'uses' => 'ConfessionController@approve') );
-		Route::get( 'n/{hash}/approve/comment/{pass}', array('as' => 'approveConfessionComment', 'uses' => 'ConfessionCommentController@approve') );
+		Route::get( 'n/{hash}/approve/comment/{id}/{pass}', array('as' => 'approveConfessionComment', 'uses' => 'ConfessionCommentController@approve') );
 
 
 		// Posts - Index

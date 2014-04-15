@@ -15,8 +15,8 @@ class Confession extends BaseModel {
 	 *
 	 * @return array
 	 */
-	public function comments() {
-		return $this->hasMany( '\Confess\Models\ConfessionComment' )->where( 'approved', true );
+	public function comments($approved = true) {
+		return $this->hasMany( '\Confess\Models\ConfessionComment' )->where( 'approved', $approved );
 	}
 
 	/**

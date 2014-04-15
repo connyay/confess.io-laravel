@@ -2,14 +2,14 @@
 {{-- Web site Title --}}
 @section('title')
 @parent
-&raquo; {{ $confession->link }}
+&raquo; {{ $confession->hash }}
 @stop
 {{-- Content --}}
 @section('content')
 	<div class="col-lg-8 col-lg-offset-2 blog">
 	@include('confession._view', array('single'=>true))
 	<!-- the comment box -->
-	{{ Form::open(array('url' => 'n/'.$confession->link.'/comment', 'class' => 'form-horizontal')) }}
+	{{ Form::open(array('url' => 'n/'.$confession->hash.'/comment', 'class' => 'form-horizontal')) }}
 		<div class="form-group">
 			<div class="col-12">
 			{{ Form::textarea('comment', Request::old('comment'), array('class' => 'form-control', 'placeholder' => 'Enter your nice comment here, please.', 'rows'=>

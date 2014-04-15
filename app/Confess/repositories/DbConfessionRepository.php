@@ -49,8 +49,9 @@ class DbConfessionRepository implements ConfessionRepositoryInterface
 
     public function addComment( $hash, $content ) {
         $confession = $this->byHash( $hash );
-
-        return $confession->comments()->save( ConfessionComment::create( array( 'content'=>trim( $content ) ) ) );
+        $comment = ConfessionComment::create( array( 'content'=>trim( $content ) ) );
+        $confession->comments()->save( $comment );
+        return  $comment;
     }
 
     public function addVote( $hash, $value ) {
@@ -79,13 +80,23 @@ class DbConfessionRepository implements ConfessionRepositoryInterface
         return Confession::create( array( 'hash'=>$this->getNewHash(), 'confession'=>trim( $confession ) ) );
     }
 
-    public function approveConfession($hash, $pass) {
-        $confession = $this->byHash($hash);
-        if($confession->pass == $pass) {
+    public function approveConfession( $hash, $pass ) {
+        $confession = $this->byHash( $hash );
+        if ( $confession->pass == $pass ) {
             $confession->approved = true;
             $confession->save();
         }
         return $confession;
+    }
+
+    public function approveConfessionComment( $hash, $id, $pass ) {
+        $confession = $this->byHash( $hash );
+        $comment = $confession->comments(false)->find($id);
+        if ( $comment->pass == $pass ) {
+            $comment->approved = true;
+            $comment->save();
+        }
+        return $comment;
     }
 
     private function getNewHash() {
