@@ -34,7 +34,9 @@ class Confession extends BaseModel {
 	 * @return array
 	 */
 	public function hugs() {
-		return $this->votes()->where( 'vote', 1 );
+		return count($this->votes->filter(function($vote) {
+			return ($vote->vote == 1);
+		}));
 	}
 
 	/**
@@ -43,7 +45,9 @@ class Confession extends BaseModel {
 	 * @return array
 	 */
 	public function shrugs() {
-		return $this->votes()->where( 'vote', -1 );
+		return count($this->votes->filter(function($vote) {
+			return ($vote->vote == -1);
+		}));
 	}
 
 	/**
