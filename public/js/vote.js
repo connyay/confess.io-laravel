@@ -19,7 +19,7 @@ jQuery(function ($) {
                     target.innerHTML = puralize(count, data.vote)
                 }
                 else if(xhr.status === 200) {
-                    var other = $(target).siblings()[0];
+                    var other = $(target).siblings('.btn-vote')[0];
                     var count = parseInt(target.innerHTML, 10);
                     var otherCount = parseInt(other.innerHTML, 10);
                     count += 1;
@@ -36,7 +36,7 @@ jQuery(function ($) {
             }
         })
     };
-    $(".btn-hug, .btn-shrug").click(function (ev) {
+    $(".btn-vote").click(function (ev) {
         ev.preventDefault();
         ev.stopPropagation();
         $this = $(this);

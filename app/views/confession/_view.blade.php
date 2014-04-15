@@ -19,11 +19,11 @@
 </p>
 	<div class="text-right">
 		<div class="btn-group btn-group-sm" data-toggle="buttons-radio">
-		<button data-v="1" data-hash="{{ $confession->hash }}" type="button" class="btn-group btn btn-primary btn-hug"> {{ $confession->hugs() }} {{ Str::plural('Hug', $confession->hugs()) }}</button>
+		<button data-v="1" data-hash="{{ $confession->hash }}" type="button" class="btn btn-primary btn-vote"> {{ $confession->hugs() }} {{ Str::plural('Hug', $confession->hugs()) }}</button>
 		@if(!$single && str_word_count($confession->confession) > 100)
 		<a href="{{{ $confession->url() }}}" class="btn btn--green" onclick="location.href=this.href;">Read More</a>
 		@endif
-		<button data-v="-1" data-hash="{{ $confession->hash }}" type="button" class="btn btn-danger btn-shrug">{{ $confession->shrugs() }} {{ Str::plural('Shrug', $confession->shrugs()) }}</button>
+		<button data-v="-1" data-hash="{{ $confession->hash }}" type="button" class="btn btn-danger btn-vote">{{ $confession->shrugs() }} {{ Str::plural('Shrug', $confession->shrugs()) }}</button>
 	</div>
 </div>
 <hr>
