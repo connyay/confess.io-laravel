@@ -26,7 +26,6 @@ $placeHolder = $placeHolderArr[array_rand($placeHolderArr)];
       Please be patient while waiting for your post to show (posts are moderated to prevent spam).
     </li>
   </ul>
-
   {{ Form::open(array('url' => 'n/new', 'class' => 'form-horizontal', 'id'=>'confessions-form')) }}
     <div class="form-group">
       <div class="col-12">

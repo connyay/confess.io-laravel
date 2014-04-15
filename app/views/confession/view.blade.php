@@ -17,7 +17,9 @@
 		</div>
 	</div>
 	{{ Form::honeypot('name', 'email') }}
-	{{ Form::submit('Submit', array('class' => 'btn btn-lg btn--green btn-block')) }}
+		<div class="form-group col-12">
+		{{ Form::submit('Submit', array('class' => 'btn btn-lg btn--green btn-block')) }}
+	</div>
 	{{ Form::close() }}
 	@if($confession->comments->count() > 0)
 	@include('confession._comments')
