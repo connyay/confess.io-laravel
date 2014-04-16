@@ -1,19 +1,12 @@
 <script>
 var type = false,
 message;
-@if (count($errors->all()) > 0)
-<div class="alert alert-error alert-block">
-<button type="button" class="close" data-dismiss="alert">&times;</button>
-<h4>Error</h4>
-Please check the form below for errors
-</div>
-@endif
 @if ($message = Session::get('success'))
 type = "success";
 message = "{{ $message }}";
 @endif
 @if ($message = Session::get('error'))
-type = "error";
+type = "danger";
 message = "{{ $message }}";
 @endif
 @if ($message = Session::get('warning'))
@@ -23,6 +16,10 @@ message = "{{ $message }}";
 @if ($message = Session::get('info'))
 type = "info";
 message = "{{ $message }}";
+@endif
+@if (Session::has('errors'))
+type = "danger";
+message = "{{ $errors->first('email') }}";
 @endif
 if (type) {
     $.bootstrapGrowl(message, {

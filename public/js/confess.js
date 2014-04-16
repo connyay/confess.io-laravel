@@ -16,13 +16,13 @@ confessBox.on('input', function (e) {
 $("#confirm").click(function (e) {
     $("#submitBtn").attr("disabled", "disabled");
     $("#confirm").attr("disabled", "disabled");
-    $("#confessions-form").unbind("submit").submit()
+    $("#confession-form").unbind("submit").submit()
 });
 $("#formatting").click(function (e) {
     e.preventDefault();
     $("#formatModal").reveal()
 });
-$("#confessions-form").submit(function (e) {
+$("#confession-form").submit(function (e) {
 showDialog(e)
 })
 });

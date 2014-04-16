@@ -26,7 +26,7 @@ $placeHolder = $placeHolderArr[array_rand($placeHolderArr)];
       Please be patient while waiting for your post to show (posts are moderated to prevent spam).
     </li>
   </ul>
-  {{ Form::open(array('url' => 'n/new', 'class' => 'form-horizontal', 'id'=>'confessions-form')) }}
+  {{ Form::open(array('url' => 'n/new', 'class' => 'form-horizontal', 'id'=>'confession-form')) }}
     <div class="form-group">
       <div class="col-12">
       {{ Form::textarea('confession', null, array('id'=>'confessionBox', 'class' => 'form-control', 'placeholder' => $placeHolder, 'rows'=>
@@ -89,5 +89,7 @@ $placeHolder = $placeHolderArr[array_rand($placeHolderArr)];
 <!-- /.modal -->
 @section('scripts')
 {{ HTML::script('js/confess.js') }}
+{{ HTML::script('js/jquery.validate.min.js') }}
+{{ HTML::script('js/confess-form-validation.js') }}
 @stop
 @stop
