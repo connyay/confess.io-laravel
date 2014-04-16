@@ -1,6 +1,6 @@
 <?php namespace Confess\Controllers;
 
-use View;
+use View, App;
 use Confess\Models\BlogPost;
 
 class BlogController extends BaseController

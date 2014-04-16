@@ -50,6 +50,15 @@ App::error(function (Exception $exception, $code) {
     Log::error($exception);
 });
 
+App::error(function(Illuminate\Database\Eloquent\ModelNotFoundException $e)
+{
+    return View::make('site/404');
+});
+
+App::missing(function($e)
+{
+    return View::make('site/404');
+});
 /*
 |--------------------------------------------------------------------------
 | Maintenance Mode Handler
