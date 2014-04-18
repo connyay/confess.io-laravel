@@ -7,4 +7,4 @@ composer.lock
 /node_modules
 .DS_Store
 .env.local.php
-.env.production.php
+.env.php
