@@ -24,7 +24,7 @@ jQuery(function ($) {
                     var otherCount = parseInt(other.innerHTML, 10);
                     count += 1;
                     otherCount -= 1;
-                    otherCount = Math.min(0, Math.abs(otherCount));
+                    otherCount = Math.max(0, otherCount);
                     if (vote === 1) {
                         target.innerHTML = puralize(count, data.vote);
                         other.innerHTML = puralize(otherCount, "Shrug")
