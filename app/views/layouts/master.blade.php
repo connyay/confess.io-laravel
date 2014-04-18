@@ -57,13 +57,13 @@
               <section class="footer">
                 <div class="container">
                   <div class="row">
-                    <ul class="list-unstyled list-inline col-12  col-sm-5  col-lg-4">
+                    <ul class="list-unstyled list-inline col-xs-4 col-sm-5  col-lg-4">
                     <li><a href="{{ URL::to('about') }}">About</a></li>
                     <li><a href="{{ URL::to('blog') }}">Blog</a></li>
                     <li><a href="http://github.com/connyay/confess.io">Github</a></li>
                     <li><a href="http://twitter.com/confess_io">Twitter</a></li>
                   </ul>
-                    <div class="col-12  col-sm-7  col-lg-5  col-lg-offset-3  text-right  hard--right">
+                    <div class="col-xs-8 col-sm-7  col-lg-5  col-lg-offset-3  text-right  hard--right">
                     <h3 class="footer--main-logo">Confess.io</h3>
                     <p>
                     Built with ♥ by <a href="http://twitter.com/_connyay" target="_blank" class="underline">@_connyay</a>
