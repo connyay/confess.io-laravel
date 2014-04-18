@@ -11,7 +11,6 @@
 |
 */
 
-
 Route::get( 'about', function () {
         // Return about us page
         return View::make( 'site/about' );

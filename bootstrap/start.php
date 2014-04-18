@@ -27,7 +27,7 @@ $app = new Illuminate\Foundation\Application;
 $env = $app->detectEnvironment(array(
 
 	'local' => array('confess-dev'),
-	'production ' => array('confess-io'),
+	'production' => array('confess-io'),
 
 ));
 

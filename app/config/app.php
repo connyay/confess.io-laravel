@@ -13,7 +13,7 @@ return array(
     |
     */
 
-    'debug' => true,
+    'debug' => false,
 
     /*
     |--------------------------------------------------------------------------
@@ -65,7 +65,7 @@ return array(
     |
     */
 
-    'key' => 'rusWjrN79HAPT29mBxRmzdrfALsQ5X4U',
+    'key' => $_ENV['CRYPT_KEY'],
 
     /*
     |--------------------------------------------------------------------------
@@ -112,7 +112,6 @@ return array(
         'Bogardo\Mailgun\MailgunServiceProvider',
         'Msurguy\Honeypot\HoneypotServiceProvider',
         'Thujohn\Twitter\TwitterServiceProvider',
-        'Barryvdh\Debugbar\ServiceProvider',
     ),
 
     /*

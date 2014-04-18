@@ -1,0 +1,12 @@
+<?php
+
+return array(
+	'API_URL'             => 'api.twitter.com',
+	'API_VERSION'         => '1.1',
+	'USE_SSL'             => true,
+
+	'CONSUMER_KEY'        => $_ENV['TWITTER_CONSUMER_KEY'],
+	'CONSUMER_SECRET'     => $_ENV['TWITTER_CONSUMER_SECRET'],
+	'ACCESS_TOKEN'        => $_ENV['TWITTER_ACCESS_TOKEN'],
+	'ACCESS_TOKEN_SECRET' => $_ENV['TWITTER_ACCESS_TOKEN_SECRET'],
+);

@@ -4,5 +4,7 @@
 /public/packages
 composer.phar
 composer.lock
-.DS_Store
 /node_modules
+.DS_Store
+.env.local.php
+.env.production.php
