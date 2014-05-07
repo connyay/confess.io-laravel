@@ -1,6 +1,6 @@
 <?php namespace Confess\Repositories;
 
-use Auth, URL, Cache, Request, Twitter;
+use App, Auth, URL, Cache, Request, Twitter;
 use Confess\Models\Confession;
 use Confess\Models\ConfessionComment;
 use Confess\Models\Vote;
